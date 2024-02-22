@@ -1,0 +1,20 @@
+<mat-card>
+  <mat-grid-list cols="2" rowHeight="100px">
+    <mat-grid-tile>
+      <label>
+        Email address
+        <input type="email" name="email" ngModel required />
+      </label>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <label>
+        Password
+        <input type="password" name="password" ngModel required />
+        <mat-icon>lock</mat-icon>
+      </label>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <button mat-button color="primary">Submit</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
