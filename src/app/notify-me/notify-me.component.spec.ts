@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthFormComponent } from './auth-form.component';
+import { NotifyMeComponent } from './notify-me.component';
 
-describe('AuthFormComponent', () => {
-  let component: AuthFormComponent;
-  let fixture: ComponentFixture<AuthFormComponent>;
+describe('NotifyMeComponent', () => {
+  let component: NotifyMeComponent;
+  let fixture: ComponentFixture<NotifyMeComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AuthFormComponent]
+      imports: [NotifyMeComponent]
     });
-    fixture = TestBed.createComponent(AuthFormComponent);
+    fixture = TestBed.createComponent(NotifyMeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
