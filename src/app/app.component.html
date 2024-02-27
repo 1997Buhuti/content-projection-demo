@@ -1,4 +1,14 @@
 <div class="product-container">
-  <app-product-card (isAddToCartClicked)="onButtonClick()"> </app-product-card>
-  <app-product-card (isAddToCartClicked)="onButtonClick()"> </app-product-card>
+  <app-product-card (isAddToCartClicked)="onButtonClick()">
+    <p class="product-name">Mountain Bike</p>
+    <div class="add-to-cart" (click)="onButtonClick()">
+      <a>Add To Cart</a>
+    </div>
+  </app-product-card>
+  <app-product-card (isAddToCartClicked)="onButtonClick()">
+    <p class="product-name">Standard Bike</p>
+    <div class="add-to-cart" (click)="onButtonClick()">
+      <a>Add To WishList</a>
+    </div>
+  </app-product-card>
 </div>
