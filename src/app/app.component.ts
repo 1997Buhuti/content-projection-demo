@@ -1,31 +1,30 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
-import { AuthFormComponent } from './auth-form/auth-form.component';
-
+import { ProductCardComponent } from './product-card/product-card.component';
+import { NotifyMeComponent } from './notify-me/notify-me.component';
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule, 
+    CommonModule,
     RouterOutlet,
-    FormsModule,
-    MatSlideToggleModule,
-    MatButtonModule,
-    MatFormFieldModule, 
-    MatInputModule, 
-    MatIconModule,
-    AuthFormComponent
+    ProductCardComponent,
+    NotifyMeComponent,
   ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'content-projection-demo';
+  NotifyMeOnStockArrival: boolean = false;
+
+  onButtonClick() {
+    console.log('Button clicked');
+  }
+
+  onNotifyMeClicked($event: boolean) {
+    this.NotifyMeOnStockArrival = $event;
+    console.log($event);
+  }
 }

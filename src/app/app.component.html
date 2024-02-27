@@ -1,1 +1,9 @@
-<app-auth-form></app-auth-form>
+<div class="product-container">
+  <app-product-card (isAddToCartClicked)="onButtonClick()">
+    <h1>Mountain Bike</h1>
+  </app-product-card>
+  <app-product-card (isAddToCartClicked)="onButtonClick()">
+    <h1>standard Bike</h1>
+    <app-notify-me (checked)="onNotifyMeClicked($event)"></app-notify-me>
+  </app-product-card>
+</div>
