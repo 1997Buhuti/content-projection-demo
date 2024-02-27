@@ -1,9 +1,15 @@
 <div class="product-container">
   <app-product-card (isAddToCartClicked)="onButtonClick()">
-    <h1>Mountain Bike</h1>
+    <p class="product-name">Mountains Bike</p>
+    <div class="add-to-cart" (click)="onButtonClick()">
+      <a>Add To Cart</a>
+    </div>
   </app-product-card>
   <app-product-card (isAddToCartClicked)="onButtonClick()">
-    <h1>standard Bike</h1>
+    <p class="product-name">standard Bike</p>
+    <div class="add-to-cart" (click)="onButtonClick()">
+      <a>Add To WishList</a>
+    </div>
     <app-notify-me (checked)="onNotifyMeClicked($event)"></app-notify-me>
   </app-product-card>
 </div>
