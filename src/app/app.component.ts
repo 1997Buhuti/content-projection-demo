@@ -22,9 +22,4 @@ export class AppComponent {
   onButtonClick() {
     console.log('Button clicked');
   }
-
-  onNotifyMeClicked($event: boolean) {
-    this.NotifyMeOnStockArrival = $event;
-    console.log($event);
-  }
 }
