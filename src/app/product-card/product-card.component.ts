@@ -1,12 +1,14 @@
 import {
   AfterContentInit,
   Component,
-  ContentChild,
+  ContentChildren,
   EventEmitter,
   Output,
+  QueryList,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NotifyMeComponent } from '../notify-me/notify-me.component';
+import { coerceStringArray } from '@angular/cdk/coercion';
 
 @Component({
   selector: 'app-product-card',
@@ -17,14 +19,20 @@ import { NotifyMeComponent } from '../notify-me/notify-me.component';
 })
 export class ProductCardComponent implements AfterContentInit {
   @Output() isAddToCartClicked = new EventEmitter();
-  @ContentChild(NotifyMeComponent) isNotifyMeChecked!: NotifyMeComponent;
+  @ContentChildren(NotifyMeComponent)
+  isNotifyMeChecked!: QueryList<NotifyMeComponent>;
   showMessage: boolean = false;
 
   ngAfterContentInit() {
     if (this.isNotifyMeChecked) {
       console.log(this.isNotifyMeChecked);
-      this.isNotifyMeChecked.checked.subscribe((value) => {
-        value? this.showMessage = true : this.showMessage=false;
+      // this.isNotifyMeChecked.checked.subscribe((value) => {
+      //   value? this.showMessage = true : this.showMessage=false;
+      // });
+      this.isNotifyMeChecked.forEach((item, index) => {
+        item.checked.subscribe((value) =>
+          console.log(`checkBox ${index}=${value}`)
+        );
       });
     }
   }

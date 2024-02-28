@@ -25,6 +25,6 @@ export class AppComponent {
 
   onNotifyMeClicked($event: boolean) {
     this.NotifyMeOnStockArrival = $event;
-    console.log($event);
+    // console.log($event);
   }
 }
