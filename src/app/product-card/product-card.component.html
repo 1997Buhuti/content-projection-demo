@@ -1,0 +1,24 @@
+<div class="product-card">
+  <img
+    class="blog_posts_post--image"
+    [src]="'../assets/22.jpg'"
+    loading="lazy"
+  />
+  <div class="price-label">
+    <p class="blog_posts_post--date">$100</p>
+  </div>
+  <!-- <p class="product-name">Mountains Bike</p> -->
+  <ng-content select=".product-name"></ng-content>
+  <p class="product-description">
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+  </p>
+  <div class="button-checkbox-container">
+    <!-- <div class="add-to-cart" (click)="addToCart()">
+      <a>Add To Cart</a>
+    </div> -->
+    <ng-content select=".add-to-cart"></ng-content>
+    <ng-content select="app-notify-me"></ng-content>
+  </div>
+  <p *ngIf="showMessage">It may take 1-2 days notify after re-stocked</p>
+</div>
