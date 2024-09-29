@@ -1,79 +1,63 @@
-/* You can add global styles to this file, and also import other style files */
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.product-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* Space between button row and product row */
+  margin-left: 15rem;
+  margin-right: 15rem;
+}
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  :root {
-    font-size: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  
+.creator-buttons-container {
+  display: flex;
+  justify-content: center; /* Center align buttons horizontally */
+  gap: 1.5rem; /* Space between buttons */
+  margin: 2rem; /* Space below button container */
+}
+
+.add-to-cart {
+  font-weight: bold;
+  padding: 1rem 2rem;
+  background-color: #0093ab;
+  border-radius: 1rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.product-cards-row {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 2px 30px 2px;
+  padding: 2rem 4rem;
+  border-radius: 1rem;
+  margin: 2rem;
+  width: 300px; /* Fixed width for smaller size */
+  max-width: 100%;
+}
+
+@media screen and (max-width: 768px) {
   .product-container {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 15rem;
-    margin-right: 15rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
   }
-  
-  .product-card {
-    display: flex;
+
+  .product-cards-row {
     flex-direction: column;
-    box-shadow: 2px 2px 30px 2px;
-    padding: 2rem 4rem;
-    border-radius: 1rem;
-    margin: 2rem;
   }
-  
-  img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-  }
-  
-  .price-label {
-    align-self: flex-start;
-    font-weight: bold;
-    font-size: 1.5rem;
-    padding: 1rem 2rem;
-    background-color: #0093ab;
-    border-radius: 1rem;
-    color: white;
-    margin-bottom: 1rem;
-  }
-  
-  .product-name {
-    font-size: 2.5rem;
-    font-weight: 900;
-  }
-  
-  .product-description {
-    font-size: 2rem;
-    line-height: 1.5;
-  }
-  
-  .add-to-cart {
-    align-self: flex-end;
-    font-weight: bold;
-    padding: 1rem 2rem;
-    background-color: #0093ab;
-    border-radius: 1rem;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-  
-  a {
-    text-decoration: none;
-    color: white;
-  }
-  
-  .button-checkbox-container {
-    display: flex;
-    justify-content: space-between;
-  }
+}

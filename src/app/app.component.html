@@ -1,15 +1,37 @@
 <div class="product-container">
-  <app-product-card (isAddToCartClicked)="onButtonClick()">
-    <p class="product-name">Mountains Bike</p>
-    <div class="add-to-cart" (click)="onButtonClick()">
-      <a>Add To Cart</a>
+  <!-- Buttons row -->
+  <div class="creator-buttons-container">
+    <div class="add-to-cart" (click)="onCrateButtonClick()">
+      <a>Add Dynamic Component</a>
     </div>
-  </app-product-card>
-  <app-product-card (isAddToCartClicked)="onButtonClick()">
-    <p class="product-name">standard Bike</p>
-    <div class="add-to-cart" (click)="onButtonClick()">
-      <a>Add To WishList</a>
+    <div class="add-to-cart" (click)="onDestroyButtonClick()">
+      <a>Remove Dynamic Component</a>
     </div>
-    <app-notify-me (checked)="onNotifyMeClicked($event)"></app-notify-me>
-  </app-product-card>
+  </div>
+
+  <!-- Product cards row -->
+  <div class="product-cards-row">
+    <ng-container #container> </ng-container>
+    <app-product-card>
+      <p class="product-name">Mountains Bike</p>
+      <div class="add-to-cart">
+        <a>Add To Cart</a>
+      </div>
+    </app-product-card>
+
+    <app-product-card>
+      <p class="product-name">Mountains Bike</p>
+      <div class="add-to-cart">
+        <a>Add To Cart</a>
+      </div>
+    </app-product-card>
+
+    <app-product-card>
+      <p class="product-name">Standard Bike</p>
+      <div class="add-to-cart">
+        <a>Add To WishList</a>
+      </div>
+      <app-notify-me (checked)="onNotifyMeClicked($event)"></app-notify-me>
+    </app-product-card>
+  </div>
 </div>

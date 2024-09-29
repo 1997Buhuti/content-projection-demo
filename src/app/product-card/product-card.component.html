@@ -1,24 +1,18 @@
 <div class="product-card">
-  <img
-    class="blog_posts_post--image"
-    [src]="'../assets/22.jpg'"
-    loading="lazy"
-  />
+  <img class="blog_posts_post--image" [src]="imageUri" loading="lazy" />
   <div class="price-label">
-    <p class="blog_posts_post--date">$100</p>
+    <h3 class="price-text">Price : $100</h3>
   </div>
-  <!-- <p class="product-name">Mountains Bike</p> -->
-  <ng-content select=".product-name"></ng-content>
+
+  <h2>{{ productName }}</h2>
   <p class="product-description">
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+    {{ productDescription }}
   </p>
-  <div class="button-checkbox-container">
-    <!-- <div class="add-to-cart" (click)="addToCart()">
-      <a>Add To Cart</a>
-    </div> -->
-    <ng-content select=".add-to-cart"></ng-content>
-    <ng-content select="app-notify-me"></ng-content>
-  </div>
+  <button
+    mat-flat-button
+    style="background-color: rgb(0, 132, 255); color: aliceblue"
+  >
+    Order
+  </button>
   <p *ngIf="showMessage">It may take 1-2 days notify after re-stocked</p>
 </div>
