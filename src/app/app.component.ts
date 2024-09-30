@@ -2,10 +2,11 @@ import {
   Component,
   ComponentRef,
   TemplateRef,
+  Type,
   viewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgComponentOutlet } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import {
   ProductCardComponent,
@@ -22,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
     ProductCardComponent,
     NotifyMeComponent,
     MatButtonModule,
+    NgComponentOutlet,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
@@ -34,33 +36,18 @@ export class AppComponent {
   notifyMeTemplate = viewChild<TemplateRef<unknown>>('notifyMe');
   #componentRef: ComponentRef<ProductCardComponent>;
 
+  protected dynamicComponent: Type<ProductCardComponent> | null = null;
+  protected dynamicComponentInputs = {
+    productName: 'Coca-Cola',
+    productType: ProductType.COCA_COLA,
+  };
+
   onCrateButtonClick() {
-    console.log('Button clicked');
-    const contentView = this.vcr().createEmbeddedView(this.notifyMeTemplate());
-    this.#componentRef = this.vcr()?.createComponent(ProductCardComponent, {
-      projectableNodes: [contentView.rootNodes],
-    });
-
-    // How to pass inputs for dynamic components
-    // this.#componentRef.instance.productName = 'Test Product';
-
-    // Using Set inputs
-    this.#componentRef.setInput('productName', 'PineApple');
-    this.#componentRef.setInput('productType', ProductType.FRUIT);
-
-    // How to use outputs
-    this.#componentRef.instance.onCloseProductCard.subscribe((value) => {
-      if (value) this.#componentRef?.destroy();
-    });
+    this.dynamicComponent = ProductCardComponent;
   }
 
   onDestroyButtonClick() {
-    //This will only remove last created component
-    // this.#componentRef?.destroy();
-    //Will clear all the components
-    this.vcr().clear();
-    //Will remove specific component in array
-    // this.vcr().remove(0);
+    this.dynamicComponent = null;
   }
 
   onNotifyMeClicked($event: boolean) {
