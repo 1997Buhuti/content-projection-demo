@@ -1,4 +1,16 @@
 <div class="product-card">
+  <div
+    class="close-button"
+    style="text-align: end; cursor: pointer"
+    (click)="onClickCloseButton()"
+  >
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Example home icon"
+      fontIcon="close"
+    ></mat-icon>
+  </div>
+
   <img class="blog_posts_post--image" [src]="imageUri" loading="lazy" />
   <div class="price-label">
     <h3 class="price-text">Price : $100</h3>

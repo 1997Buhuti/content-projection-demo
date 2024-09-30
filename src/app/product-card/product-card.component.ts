@@ -61,8 +61,9 @@ export class ProductCardComponent implements OnInit {
         break;
     }
   }
-  addToCart() {
-    this.isAddToCartClicked.emit(true);
+
+  onClickCloseButton() {
+    console.log('Close Button clicked');
   }
 }
 

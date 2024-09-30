@@ -1,4 +1,9 @@
-import { Component, viewChild, ViewContainerRef } from '@angular/core';
+import {
+  Component,
+  ComponentRef,
+  viewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ProductCardComponent } from './product-card/product-card.component';
@@ -22,14 +27,24 @@ export class AppComponent {
   NotifyMeOnStockArrival: boolean = false;
 
   vcr = viewChild('container', { read: ViewContainerRef });
+  #componentRef: ComponentRef<ProductCardComponent>;
 
   onCrateButtonClick() {
     console.log('Button clicked');
-    this.vcr()?.createComponent(ProductCardComponent);
+    this.#componentRef = this.vcr()?.createComponent(ProductCardComponent);
+
+    // How to pass inputs for dynamic components
+
+    this.#componentRef.instance.productName;
   }
 
   onDestroyButtonClick() {
-    console.log('Button clicked');
+    //This will only remove last created component
+    // this.#componentRef?.destroy();
+    //Will clear all the components
+    this.vcr().clear();
+    //Will remove specific component in array
+    // this.vcr().remove(0);
   }
 
   onNotifyMeClicked($event: boolean) {
