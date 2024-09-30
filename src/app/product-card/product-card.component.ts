@@ -1,12 +1,4 @@
-import {
-  AfterContentInit,
-  Component,
-  ContentChild,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, input, OnInit, output, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NotifyMeComponent } from '../notify-me/notify-me.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -35,18 +27,19 @@ import { MatCardModule } from '@angular/material/card';
   styleUrls: ['./product-card.component.scss'],
 })
 export class ProductCardComponent implements OnInit {
-  @Output() isAddToCartClicked = new EventEmitter();
-  @ContentChild(NotifyMeComponent) isNotifyMeChecked!: NotifyMeComponent;
-  @Input() productName: string = 'Mountain Bicycle';
-  @Input() productDescription: string =
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s";
+  productName = input('Mountain Bicycle');
+  productDescription = input(
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+  );
 
-  @Input() productType: ProductType = ProductType.BIKE;
+  productType = input<ProductType>(ProductType.BIKE);
+  onCloseProductCard = output<boolean>();
+
   showMessage: boolean = false;
   imageUri: string = '';
 
   ngOnInit(): void {
-    this.setImageURI(this.productType);
+    this.setImageURI(this.productType());
   }
   setImageURI(productType: ProductType) {
     switch (productType) {
@@ -64,6 +57,7 @@ export class ProductCardComponent implements OnInit {
 
   onClickCloseButton() {
     console.log('Close Button clicked');
+    this.onCloseProductCard.emit(true);
   }
 }
 

@@ -6,7 +6,10 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { ProductCardComponent } from './product-card/product-card.component';
+import {
+  ProductCardComponent,
+  ProductType,
+} from './product-card/product-card.component';
 import { NotifyMeComponent } from './notify-me/notify-me.component';
 import { MatButtonModule } from '@angular/material/button';
 @Component({
@@ -34,8 +37,16 @@ export class AppComponent {
     this.#componentRef = this.vcr()?.createComponent(ProductCardComponent);
 
     // How to pass inputs for dynamic components
+    // this.#componentRef.instance.productName = 'Test Product';
 
-    this.#componentRef.instance.productName;
+    // Using Set inputs
+    this.#componentRef.setInput('productName', 'PineApple');
+    this.#componentRef.setInput('productType', ProductType.FRUIT);
+
+    // How to use outputs
+    this.#componentRef.instance.onCloseProductCard.subscribe((value) => {
+      if (value) this.#componentRef?.destroy();
+    });
   }
 
   onDestroyButtonClick() {

@@ -16,9 +16,9 @@
     <h3 class="price-text">Price : $100</h3>
   </div>
 
-  <h2>{{ productName }}</h2>
+  <h2>{{ productName() }}</h2>
   <p class="product-description">
-    {{ productDescription }}
+    {{ productDescription() }}
   </p>
   <button
     mat-flat-button
@@ -26,5 +26,4 @@
   >
     Order
   </button>
-  <p *ngIf="showMessage">It may take 1-2 days notify after re-stocked</p>
 </div>
