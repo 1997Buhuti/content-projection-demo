@@ -1,6 +1,7 @@
 import {
   Component,
   ComponentRef,
+  TemplateRef,
   viewChild,
   ViewContainerRef,
 } from '@angular/core';
@@ -30,11 +31,15 @@ export class AppComponent {
   NotifyMeOnStockArrival: boolean = false;
 
   vcr = viewChild('container', { read: ViewContainerRef });
+  notifyMeTemplate = viewChild<TemplateRef<unknown>>('notifyMe');
   #componentRef: ComponentRef<ProductCardComponent>;
 
   onCrateButtonClick() {
     console.log('Button clicked');
-    this.#componentRef = this.vcr()?.createComponent(ProductCardComponent);
+    const contentView = this.vcr().createEmbeddedView(this.notifyMeTemplate());
+    this.#componentRef = this.vcr()?.createComponent(ProductCardComponent, {
+      projectableNodes: [contentView.rootNodes],
+    });
 
     // How to pass inputs for dynamic components
     // this.#componentRef.instance.productName = 'Test Product';
