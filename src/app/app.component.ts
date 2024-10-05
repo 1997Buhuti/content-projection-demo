@@ -1,7 +1,9 @@
 import {
   Component,
   ComponentRef,
+  inject,
   TemplateRef,
+  Type,
   viewChild,
   ViewContainerRef,
 } from '@angular/core';
@@ -32,35 +34,24 @@ export class AppComponent {
 
   vcr = viewChild('container', { read: ViewContainerRef });
   notifyMeTemplate = viewChild<TemplateRef<unknown>>('notifyMe');
-  #componentRef: ComponentRef<ProductCardComponent>;
+  domNodesArray = [];
+
+  dynamicComponent: Type<ProductCardComponent> = null;
+  componentInputs = {
+    productName: 'Coca-Cola',
+    productType: ProductType.COCA_COLA,
+    productDescription: '',
+  };
 
   onCrateButtonClick() {
-    console.log('Button clicked');
-    const contentView = this.vcr().createEmbeddedView(this.notifyMeTemplate());
-    this.#componentRef = this.vcr()?.createComponent(ProductCardComponent, {
-      projectableNodes: [contentView.rootNodes],
-    });
-
-    // How to pass inputs for dynamic components
-    // this.#componentRef.instance.productName = 'Test Product';
-
-    // Using Set inputs
-    this.#componentRef.setInput('productName', 'PineApple');
-    this.#componentRef.setInput('productType', ProductType.FRUIT);
-
-    // How to use outputs
-    this.#componentRef.instance.onCloseProductCard.subscribe((value) => {
-      if (value) this.#componentRef?.destroy();
-    });
+    this.domNodesArray = [
+      this.vcr().createEmbeddedView(this.notifyMeTemplate()).rootNodes,
+    ];
+    this.dynamicComponent = ProductCardComponent;
   }
 
   onDestroyButtonClick() {
-    //This will only remove last created component
-    // this.#componentRef?.destroy();
-    //Will clear all the components
-    this.vcr().clear();
-    //Will remove specific component in array
-    // this.vcr().remove(0);
+    this.dynamicComponent = null;
   }
 
   onNotifyMeClicked($event: boolean) {

@@ -11,7 +11,13 @@
 
   <!-- Product cards row -->
   <div class="product-cards-row">
-    <ng-container #container> </ng-container>
+    <ng-container
+      #container
+      [ngComponentOutlet]="dynamicComponent"
+      [ngComponentOutletInputs]="componentInputs"
+      [ngComponentOutletContent]="domNodesArray"
+    >
+    </ng-container>
   </div>
   <ng-template #notifyMe>
     <app-notify-me (checked)="onNotifyMeClicked($event)"></app-notify-me>
