@@ -32,7 +32,7 @@ export class AppComponent {
   title = 'content-projection-demo';
   NotifyMeOnStockArrival: boolean = false;
 
-  vcr = viewChild('container', { read: ViewContainerRef });
+  vcr = inject(ViewContainerRef);
   notifyMeTemplate = viewChild<TemplateRef<unknown>>('notifyMe');
   domNodesArray = [];
 
@@ -45,7 +45,7 @@ export class AppComponent {
 
   onCrateButtonClick() {
     this.domNodesArray = [
-      this.vcr().createEmbeddedView(this.notifyMeTemplate()).rootNodes,
+      this.vcr.createEmbeddedView(this.notifyMeTemplate()).rootNodes,
     ];
     this.dynamicComponent = ProductCardComponent;
   }
