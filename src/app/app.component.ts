@@ -31,12 +31,16 @@ export class AppComponent {
   NotifyMeOnStockArrival: boolean = false;
 
   vcr = viewChild('container', { read: ViewContainerRef });
-  notifyMeTemplate = viewChild<TemplateRef<unknown>>('notifyMe');
   #componentRef: ComponentRef<ProductCardComponent>;
+
+  //template reference to the dynamic content projection
+  notifyMeTemplate = viewChild<TemplateRef<unknown>>('notifyMe');
 
   onCrateButtonClick() {
     console.log('Button clicked');
+    //dynamic content projection
     const contentView = this.vcr().createEmbeddedView(this.notifyMeTemplate());
+
     this.#componentRef = this.vcr()?.createComponent(ProductCardComponent, {
       projectableNodes: [contentView.rootNodes],
     });
